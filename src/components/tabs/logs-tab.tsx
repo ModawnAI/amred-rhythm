@@ -34,10 +34,15 @@ import {
   CaretDown,
   Sparkle,
   Trash,
+  Camera,
+  ArrowLeft,
 } from '@phosphor-icons/react';
 import { useLifelogStore } from '@/store/lifelog-store';
 import { toast } from 'sonner';
 import type { LogType, MealType, MoodScore, Intensity } from '@/types';
+import { FoodPhotoCapture } from '@/components/food/food-photo-capture';
+import { NutritionResult } from '@/components/food/nutrition-result';
+import type { FoodAnalysisResult } from '@/app/api/analyze/food/route';
 
 interface LogCategory {
   type: LogType;
@@ -380,6 +385,7 @@ interface LogInputModalProps {
 function LogInputModal({ type, onClose, onSubmit }: LogInputModalProps) {
   const [formData, setFormData] = useState<Record<string, unknown>>({});
   const [isValid, setIsValid] = useState(false);
+  const [isDietPhotoMode, setIsDietPhotoMode] = useState(false);
 
   // Validate form on change
   useEffect(() => {
@@ -410,10 +416,26 @@ function LogInputModal({ type, onClose, onSubmit }: LogInputModalProps) {
     }
   };
 
+  // Handle direct submit from DietForm (for AI photo analysis flow)
+  const handleDietDirectSubmit = (data: Record<string, unknown>) => {
+    onSubmit(data);
+  };
+
   const renderForm = () => {
     switch (type) {
       case 'diet':
-        return <DietForm data={formData} onChange={setFormData} />;
+        return (
+          <DietForm
+            data={formData}
+            onChange={(newData) => {
+              setFormData(newData);
+              // Check if we're in photo/result mode based on presence of certain fields
+              const hasPhotoResult = (newData.metadata as Record<string, unknown>)?.protein !== undefined;
+              setIsDietPhotoMode(hasPhotoResult);
+            }}
+            onDirectSubmit={handleDietDirectSubmit}
+          />
+        );
       case 'sleep':
         return <SleepForm data={formData} onChange={setFormData} />;
       case 'activity':
@@ -428,6 +450,11 @@ function LogInputModal({ type, onClose, onSubmit }: LogInputModalProps) {
   };
 
   const category = logCategories.find((c) => c.type === type);
+
+  // Determine if we should show the footer button
+  // For diet type, we hide it when in photo analysis mode (DietForm handles its own submit)
+  const hasMealType = Boolean((formData.metadata as Record<string, unknown>)?.mealType);
+  const showFooterButton = type !== 'diet' || (!isDietPhotoMode && hasMealType);
 
   return (
     <motion.div
@@ -487,20 +514,22 @@ function LogInputModal({ type, onClose, onSubmit }: LogInputModalProps) {
           {renderForm()}
         </div>
 
-        {/* Fixed footer with button - always visible */}
-        <div
-          className="flex-shrink-0 px-6 py-4 bg-white border-t border-gray-100"
-          style={{ paddingBottom: 'max(16px, env(safe-area-inset-bottom, 16px))' }}
-        >
-          <Button
-            onClick={handleSubmit}
-            disabled={!isValid}
-            className="w-full bg-[#665DC6] hover:bg-[#5248A8] disabled:opacity-50 disabled:cursor-not-allowed h-12 text-base"
+        {/* Fixed footer with button - shown only for manual input modes */}
+        {showFooterButton && (
+          <div
+            className="flex-shrink-0 px-6 py-4 bg-white border-t border-gray-100"
+            style={{ paddingBottom: 'max(16px, env(safe-area-inset-bottom, 16px))' }}
           >
-            <Check size={18} className="mr-2" />
-            저장하기
-          </Button>
-        </div>
+            <Button
+              onClick={handleSubmit}
+              disabled={!isValid}
+              className="w-full bg-[#665DC6] hover:bg-[#5248A8] disabled:opacity-50 disabled:cursor-not-allowed h-12 text-base"
+            >
+              <Check size={18} className="mr-2" />
+              저장하기
+            </Button>
+          </div>
+        )}
       </motion.div>
     </motion.div>
   );
@@ -557,7 +586,17 @@ function NumberStepper({
   );
 }
 
-function DietForm({ data, onChange }: FormProps) {
+type DietInputMode = 'select' | 'manual' | 'photo' | 'result';
+
+interface DietFormProps extends FormProps {
+  onDirectSubmit?: (data: Record<string, unknown>) => void;
+}
+
+function DietForm({ data, onChange, onDirectSubmit }: DietFormProps) {
+  const [inputMode, setInputMode] = useState<DietInputMode>('select');
+  const [analysisResult, setAnalysisResult] = useState<FoodAnalysisResult | null>(null);
+  const [capturedPhoto, setCapturedPhoto] = useState<string | null>(null);
+
   const mealTypes = [
     { value: 'breakfast', label: '아침', emoji: '🌅' },
     { value: 'lunch', label: '점심', emoji: '☀️' },
@@ -565,8 +604,168 @@ function DietForm({ data, onChange }: FormProps) {
     { value: 'snack', label: '간식', emoji: '🍪' },
   ];
 
+  const handleAnalysisComplete = (result: FoodAnalysisResult) => {
+    setAnalysisResult(result);
+    setInputMode('result');
+  };
+
+  const handleConfirmResult = (resultData: {
+    mealType: MealType;
+    description: string;
+    calories: number;
+    protein: number;
+    carbs: number;
+    fat: number;
+    sodium: number;
+    photoUrl?: string;
+  }) => {
+    // Directly submit if handler provided
+    if (onDirectSubmit) {
+      onDirectSubmit({
+        value: resultData.calories,
+        metadata: {
+          mealType: resultData.mealType,
+          mealDescription: resultData.description,
+          description: resultData.description,
+          calories: resultData.calories,
+          protein: resultData.protein,
+          carbs: resultData.carbs,
+          fat: resultData.fat,
+          sodium: resultData.sodium,
+          photoUrl: capturedPhoto,
+        },
+      });
+    } else {
+      // Update form data
+      onChange({
+        ...data,
+        value: resultData.calories,
+        metadata: {
+          mealType: resultData.mealType,
+          mealDescription: resultData.description,
+          description: resultData.description,
+          calories: resultData.calories,
+          protein: resultData.protein,
+          carbs: resultData.carbs,
+          fat: resultData.fat,
+          sodium: resultData.sodium,
+          photoUrl: capturedPhoto,
+        },
+      });
+    }
+  };
+
+  // Mode selection screen
+  if (inputMode === 'select') {
+    return (
+      <div className="space-y-4">
+        <div className="text-center py-2">
+          <p className="text-sm text-gray-600">기록 방법을 선택해주세요</p>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
+          {/* AI Photo Mode */}
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setInputMode('photo')}
+            className="flex flex-col items-center gap-3 p-6 rounded-2xl border-2 border-[#665DC6]/30 bg-gradient-to-br from-[#665DC6]/10 to-[#665DC6]/5 hover:from-[#665DC6]/15 hover:to-[#665DC6]/10 transition-all"
+          >
+            <div className="w-16 h-16 rounded-full bg-[#665DC6]/20 flex items-center justify-center relative">
+              <Camera size={32} className="text-[#665DC6]" weight="fill" />
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#665DC6] flex items-center justify-center">
+                <Sparkle size={12} className="text-white" weight="fill" />
+              </div>
+            </div>
+            <div className="text-center">
+              <p className="text-sm font-semibold text-[#665DC6]">📸 사진으로 기록</p>
+              <p className="text-xs text-gray-500 mt-1">
+                AI가 자동으로 분석해요
+              </p>
+            </div>
+            <Badge variant="secondary" className="text-[10px] bg-[#665DC6]/10 text-[#665DC6]">
+              추천
+            </Badge>
+          </motion.button>
+
+          {/* Manual Mode */}
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setInputMode('manual')}
+            className="flex flex-col items-center gap-3 p-6 rounded-2xl border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
+          >
+            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
+              <ForkKnife size={32} className="text-gray-500" weight="fill" />
+            </div>
+            <div className="text-center">
+              <p className="text-sm font-semibold text-gray-700">✏️ 직접 입력</p>
+              <p className="text-xs text-gray-500 mt-1">
+                수동으로 입력해요
+              </p>
+            </div>
+          </motion.button>
+        </div>
+      </div>
+    );
+  }
+
+  // Photo capture mode
+  if (inputMode === 'photo') {
+    return (
+      <div className="space-y-4">
+        <button
+          onClick={() => setInputMode('select')}
+          className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700"
+        >
+          <ArrowLeft size={16} />
+          <span>돌아가기</span>
+        </button>
+
+        <FoodPhotoCapture
+          onAnalysisComplete={(result) => {
+            handleAnalysisComplete(result);
+          }}
+          onCancel={() => setInputMode('select')}
+        />
+      </div>
+    );
+  }
+
+  // Result display mode
+  if (inputMode === 'result' && analysisResult) {
+    return (
+      <div className="space-y-4">
+        <button
+          onClick={() => setInputMode('select')}
+          className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700"
+        >
+          <ArrowLeft size={16} />
+          <span>돌아가기</span>
+        </button>
+
+        <NutritionResult
+          result={analysisResult}
+          photoUrl={capturedPhoto || undefined}
+          onConfirm={handleConfirmResult}
+          onEdit={() => {
+            setAnalysisResult(null);
+            setInputMode('photo');
+          }}
+        />
+      </div>
+    );
+  }
+
+  // Manual input mode
   return (
     <div className="space-y-5">
+      <button
+        onClick={() => setInputMode('select')}
+        className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700"
+      >
+        <ArrowLeft size={16} />
+        <span>돌아가기</span>
+      </button>
+
       <div>
         <Label className="text-sm text-muted-foreground mb-3 block">식사 종류</Label>
         <div className="grid grid-cols-4 gap-2">
