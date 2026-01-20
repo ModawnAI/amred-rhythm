@@ -1,0 +1,814 @@
+{
+  "profile": {
+    "id": "user-1",
+    "name": "김민지",
+    "age": 32,
+    "gender": "female",
+    "height": 165,
+    "targetWeight": 58,
+    "healthGoals": ["체중 감량", "수면 개선", "규칙적인 운동"],
+    "avatarUrl": "/pic.png",
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  "logs": [
+    {
+      "id": "log-001",
+      "userId": "user-1",
+      "timestamp": "2025-01-13T07:30:00.000Z",
+      "date": "2025-01-13",
+      "type": "weight",
+      "value": 62.5,
+      "metadata": {
+        "weightTime": "am",
+        "description": "62.5kg"
+      }
+    },
+    {
+      "id": "log-002",
+      "userId": "user-1",
+      "timestamp": "2025-01-13T08:00:00.000Z",
+      "date": "2025-01-13",
+      "type": "sleep",
+      "value": 6.5,
+      "metadata": {
+        "bedtime": "00:30",
+        "wakeTime": "07:00",
+        "sleepQuality": 3,
+        "description": "6.5시간 수면"
+      }
+    },
+    {
+      "id": "log-003",
+      "userId": "user-1",
+      "timestamp": "2025-01-13T08:30:00.000Z",
+      "date": "2025-01-13",
+      "type": "diet",
+      "value": 350,
+      "metadata": {
+        "mealType": "breakfast",
+        "mealDescription": "토스트, 계란 프라이, 우유",
+        "calories": 350,
+        "description": "토스트, 계란 프라이, 우유"
+      }
+    },
+    {
+      "id": "log-004",
+      "userId": "user-1",
+      "timestamp": "2025-01-13T12:30:00.000Z",
+      "date": "2025-01-13",
+      "type": "diet",
+      "value": 650,
+      "metadata": {
+        "mealType": "lunch",
+        "mealDescription": "비빔밥, 된장찌개",
+        "calories": 650,
+        "description": "비빔밥, 된장찌개"
+      }
+    },
+    {
+      "id": "log-005",
+      "userId": "user-1",
+      "timestamp": "2025-01-13T18:00:00.000Z",
+      "date": "2025-01-13",
+      "type": "activity",
+      "value": 30,
+      "metadata": {
+        "activityType": "걷기",
+        "duration": 30,
+        "intensity": "low",
+        "description": "퇴근길 30분 걷기"
+      }
+    },
+    {
+      "id": "log-006",
+      "userId": "user-1",
+      "timestamp": "2025-01-13T19:00:00.000Z",
+      "date": "2025-01-13",
+      "type": "diet",
+      "value": 550,
+      "metadata": {
+        "mealType": "dinner",
+        "mealDescription": "삼겹살, 쌈채소, 밥",
+        "calories": 550,
+        "description": "삼겹살, 쌈채소, 밥"
+      }
+    },
+    {
+      "id": "log-007",
+      "userId": "user-1",
+      "timestamp": "2025-01-13T22:00:00.000Z",
+      "date": "2025-01-13",
+      "type": "mood",
+      "value": 4,
+      "metadata": {
+        "moodScore": 4,
+        "moodNote": "오늘 날씨가 좋아서 기분이 좋았다",
+        "description": "좋음"
+      }
+    },
+    {
+      "id": "log-008",
+      "userId": "user-1",
+      "timestamp": "2025-01-14T07:30:00.000Z",
+      "date": "2025-01-14",
+      "type": "weight",
+      "value": 62.3,
+      "metadata": {
+        "weightTime": "am",
+        "description": "62.3kg"
+      }
+    },
+    {
+      "id": "log-009",
+      "userId": "user-1",
+      "timestamp": "2025-01-14T08:00:00.000Z",
+      "date": "2025-01-14",
+      "type": "sleep",
+      "value": 7,
+      "metadata": {
+        "bedtime": "23:30",
+        "wakeTime": "06:30",
+        "sleepQuality": 4,
+        "description": "7시간 수면"
+      }
+    },
+    {
+      "id": "log-010",
+      "userId": "user-1",
+      "timestamp": "2025-01-14T08:30:00.000Z",
+      "date": "2025-01-14",
+      "type": "diet",
+      "value": 400,
+      "metadata": {
+        "mealType": "breakfast",
+        "mealDescription": "오트밀, 바나나, 아몬드 우유",
+        "calories": 400,
+        "description": "오트밀, 바나나, 아몬드 우유"
+      }
+    },
+    {
+      "id": "log-011",
+      "userId": "user-1",
+      "timestamp": "2025-01-14T12:30:00.000Z",
+      "date": "2025-01-14",
+      "type": "diet",
+      "value": 600,
+      "metadata": {
+        "mealType": "lunch",
+        "mealDescription": "샐러드, 닭가슴살",
+        "calories": 600,
+        "description": "샐러드, 닭가슴살"
+      }
+    },
+    {
+      "id": "log-012",
+      "userId": "user-1",
+      "timestamp": "2025-01-14T17:30:00.000Z",
+      "date": "2025-01-14",
+      "type": "activity",
+      "value": 45,
+      "metadata": {
+        "activityType": "요가",
+        "duration": 45,
+        "intensity": "medium",
+        "description": "45분 요가"
+      }
+    },
+    {
+      "id": "log-013",
+      "userId": "user-1",
+      "timestamp": "2025-01-14T19:00:00.000Z",
+      "date": "2025-01-14",
+      "type": "diet",
+      "value": 500,
+      "metadata": {
+        "mealType": "dinner",
+        "mealDescription": "연어 스테이크, 야채 볶음",
+        "calories": 500,
+        "description": "연어 스테이크, 야채 볶음"
+      }
+    },
+    {
+      "id": "log-014",
+      "userId": "user-1",
+      "timestamp": "2025-01-14T22:00:00.000Z",
+      "date": "2025-01-14",
+      "type": "mood",
+      "value": 5,
+      "metadata": {
+        "moodScore": 5,
+        "moodNote": "운동 후 기분이 정말 좋다!",
+        "description": "매우 좋음"
+      }
+    },
+    {
+      "id": "log-015",
+      "userId": "user-1",
+      "timestamp": "2025-01-15T07:30:00.000Z",
+      "date": "2025-01-15",
+      "type": "weight",
+      "value": 62.1,
+      "metadata": {
+        "weightTime": "am",
+        "description": "62.1kg"
+      }
+    },
+    {
+      "id": "log-016",
+      "userId": "user-1",
+      "timestamp": "2025-01-15T08:00:00.000Z",
+      "date": "2025-01-15",
+      "type": "sleep",
+      "value": 5.5,
+      "metadata": {
+        "bedtime": "01:00",
+        "wakeTime": "06:30",
+        "sleepQuality": 2,
+        "description": "5.5시간 수면"
+      }
+    },
+    {
+      "id": "log-017",
+      "userId": "user-1",
+      "timestamp": "2025-01-15T09:00:00.000Z",
+      "date": "2025-01-15",
+      "type": "diet",
+      "value": 200,
+      "metadata": {
+        "mealType": "breakfast",
+        "mealDescription": "커피, 크루아상",
+        "calories": 200,
+        "description": "커피, 크루아상"
+      }
+    },
+    {
+      "id": "log-018",
+      "userId": "user-1",
+      "timestamp": "2025-01-15T13:00:00.000Z",
+      "date": "2025-01-15",
+      "type": "diet",
+      "value": 800,
+      "metadata": {
+        "mealType": "lunch",
+        "mealDescription": "짜장면, 탕수육",
+        "calories": 800,
+        "description": "짜장면, 탕수육"
+      }
+    },
+    {
+      "id": "log-019",
+      "userId": "user-1",
+      "timestamp": "2025-01-15T22:00:00.000Z",
+      "date": "2025-01-15",
+      "type": "mood",
+      "value": 2,
+      "metadata": {
+        "moodScore": 2,
+        "moodNote": "잠을 못 자서 피곤하고 예민함",
+        "description": "나쁨"
+      }
+    },
+    {
+      "id": "log-020",
+      "userId": "user-1",
+      "timestamp": "2025-01-16T07:30:00.000Z",
+      "date": "2025-01-16",
+      "type": "weight",
+      "value": 62.4,
+      "metadata": {
+        "weightTime": "am",
+        "description": "62.4kg"
+      }
+    },
+    {
+      "id": "log-021",
+      "userId": "user-1",
+      "timestamp": "2025-01-16T08:00:00.000Z",
+      "date": "2025-01-16",
+      "type": "sleep",
+      "value": 8,
+      "metadata": {
+        "bedtime": "22:30",
+        "wakeTime": "06:30",
+        "sleepQuality": 5,
+        "description": "8시간 수면"
+      }
+    },
+    {
+      "id": "log-022",
+      "userId": "user-1",
+      "timestamp": "2025-01-16T08:30:00.000Z",
+      "date": "2025-01-16",
+      "type": "diet",
+      "value": 450,
+      "metadata": {
+        "mealType": "breakfast",
+        "mealDescription": "현미밥, 계란찜, 김치",
+        "calories": 450,
+        "description": "현미밥, 계란찜, 김치"
+      }
+    },
+    {
+      "id": "log-023",
+      "userId": "user-1",
+      "timestamp": "2025-01-16T12:30:00.000Z",
+      "date": "2025-01-16",
+      "type": "diet",
+      "value": 550,
+      "metadata": {
+        "mealType": "lunch",
+        "mealDescription": "제육볶음 정식",
+        "calories": 550,
+        "description": "제육볶음 정식"
+      }
+    },
+    {
+      "id": "log-024",
+      "userId": "user-1",
+      "timestamp": "2025-01-16T18:00:00.000Z",
+      "date": "2025-01-16",
+      "type": "activity",
+      "value": 60,
+      "metadata": {
+        "activityType": "헬스",
+        "duration": 60,
+        "intensity": "high",
+        "description": "1시간 헬스장 운동"
+      }
+    },
+    {
+      "id": "log-025",
+      "userId": "user-1",
+      "timestamp": "2025-01-16T19:30:00.000Z",
+      "date": "2025-01-16",
+      "type": "diet",
+      "value": 480,
+      "metadata": {
+        "mealType": "dinner",
+        "mealDescription": "닭가슴살 샐러드, 고구마",
+        "calories": 480,
+        "description": "닭가슴살 샐러드, 고구마"
+      }
+    },
+    {
+      "id": "log-026",
+      "userId": "user-1",
+      "timestamp": "2025-01-16T22:00:00.000Z",
+      "date": "2025-01-16",
+      "type": "mood",
+      "value": 5,
+      "metadata": {
+        "moodScore": 5,
+        "moodNote": "푹 자고 운동도 하니 컨디션 최고!",
+        "description": "매우 좋음"
+      }
+    },
+    {
+      "id": "log-027",
+      "userId": "user-1",
+      "timestamp": "2025-01-17T07:30:00.000Z",
+      "date": "2025-01-17",
+      "type": "weight",
+      "value": 62.0,
+      "metadata": {
+        "weightTime": "am",
+        "description": "62.0kg"
+      }
+    },
+    {
+      "id": "log-028",
+      "userId": "user-1",
+      "timestamp": "2025-01-17T08:00:00.000Z",
+      "date": "2025-01-17",
+      "type": "sleep",
+      "value": 7.5,
+      "metadata": {
+        "bedtime": "23:00",
+        "wakeTime": "06:30",
+        "sleepQuality": 4,
+        "description": "7.5시간 수면"
+      }
+    },
+    {
+      "id": "log-029",
+      "userId": "user-1",
+      "timestamp": "2025-01-17T08:30:00.000Z",
+      "date": "2025-01-17",
+      "type": "diet",
+      "value": 380,
+      "metadata": {
+        "mealType": "breakfast",
+        "mealDescription": "그릭요거트, 견과류, 블루베리",
+        "calories": 380,
+        "description": "그릭요거트, 견과류, 블루베리"
+      }
+    },
+    {
+      "id": "log-030",
+      "userId": "user-1",
+      "timestamp": "2025-01-17T12:30:00.000Z",
+      "date": "2025-01-17",
+      "type": "diet",
+      "value": 620,
+      "metadata": {
+        "mealType": "lunch",
+        "mealDescription": "김치찌개, 밥, 반찬",
+        "calories": 620,
+        "description": "김치찌개, 밥, 반찬"
+      }
+    },
+    {
+      "id": "log-031",
+      "userId": "user-1",
+      "timestamp": "2025-01-17T17:00:00.000Z",
+      "date": "2025-01-17",
+      "type": "activity",
+      "value": 40,
+      "metadata": {
+        "activityType": "달리기",
+        "duration": 40,
+        "intensity": "medium",
+        "description": "40분 조깅"
+      }
+    },
+    {
+      "id": "log-032",
+      "userId": "user-1",
+      "timestamp": "2025-01-17T19:00:00.000Z",
+      "date": "2025-01-17",
+      "type": "diet",
+      "value": 520,
+      "metadata": {
+        "mealType": "dinner",
+        "mealDescription": "된장찌개, 두부, 야채",
+        "calories": 520,
+        "description": "된장찌개, 두부, 야채"
+      }
+    },
+    {
+      "id": "log-033",
+      "userId": "user-1",
+      "timestamp": "2025-01-17T22:00:00.000Z",
+      "date": "2025-01-17",
+      "type": "mood",
+      "value": 4,
+      "metadata": {
+        "moodScore": 4,
+        "moodNote": "조깅하면서 스트레스 해소됨",
+        "description": "좋음"
+      }
+    },
+    {
+      "id": "log-034",
+      "userId": "user-1",
+      "timestamp": "2025-01-18T07:30:00.000Z",
+      "date": "2025-01-18",
+      "type": "weight",
+      "value": 61.8,
+      "metadata": {
+        "weightTime": "am",
+        "description": "61.8kg"
+      }
+    },
+    {
+      "id": "log-035",
+      "userId": "user-1",
+      "timestamp": "2025-01-18T09:00:00.000Z",
+      "date": "2025-01-18",
+      "type": "sleep",
+      "value": 9,
+      "metadata": {
+        "bedtime": "23:00",
+        "wakeTime": "08:00",
+        "sleepQuality": 5,
+        "description": "9시간 수면 (주말)"
+      }
+    },
+    {
+      "id": "log-036",
+      "userId": "user-1",
+      "timestamp": "2025-01-18T10:00:00.000Z",
+      "date": "2025-01-18",
+      "type": "diet",
+      "value": 500,
+      "metadata": {
+        "mealType": "breakfast",
+        "mealDescription": "브런치: 에그베네딕트, 샐러드",
+        "calories": 500,
+        "description": "브런치: 에그베네딕트, 샐러드"
+      }
+    },
+    {
+      "id": "log-037",
+      "userId": "user-1",
+      "timestamp": "2025-01-18T14:00:00.000Z",
+      "date": "2025-01-18",
+      "type": "activity",
+      "value": 90,
+      "metadata": {
+        "activityType": "등산",
+        "duration": 90,
+        "intensity": "high",
+        "description": "1시간 30분 등산"
+      }
+    },
+    {
+      "id": "log-038",
+      "userId": "user-1",
+      "timestamp": "2025-01-18T18:00:00.000Z",
+      "date": "2025-01-18",
+      "type": "diet",
+      "value": 700,
+      "metadata": {
+        "mealType": "dinner",
+        "mealDescription": "갈비찜, 밥, 나물",
+        "calories": 700,
+        "description": "갈비찜, 밥, 나물"
+      }
+    },
+    {
+      "id": "log-039",
+      "userId": "user-1",
+      "timestamp": "2025-01-18T22:00:00.000Z",
+      "date": "2025-01-18",
+      "type": "mood",
+      "value": 5,
+      "metadata": {
+        "moodScore": 5,
+        "moodNote": "등산하고 맛있는 저녁 먹으니 행복!",
+        "description": "매우 좋음"
+      }
+    },
+    {
+      "id": "log-040",
+      "userId": "user-1",
+      "timestamp": "2025-01-19T08:00:00.000Z",
+      "date": "2025-01-19",
+      "type": "weight",
+      "value": 61.6,
+      "metadata": {
+        "weightTime": "am",
+        "description": "61.6kg"
+      }
+    },
+    {
+      "id": "log-041",
+      "userId": "user-1",
+      "timestamp": "2025-01-19T09:00:00.000Z",
+      "date": "2025-01-19",
+      "type": "sleep",
+      "value": 8.5,
+      "metadata": {
+        "bedtime": "23:30",
+        "wakeTime": "08:00",
+        "sleepQuality": 5,
+        "description": "8.5시간 수면 (주말)"
+      }
+    },
+    {
+      "id": "log-042",
+      "userId": "user-1",
+      "timestamp": "2025-01-19T10:00:00.000Z",
+      "date": "2025-01-19",
+      "type": "diet",
+      "value": 450,
+      "metadata": {
+        "mealType": "breakfast",
+        "mealDescription": "팬케이크, 과일, 우유",
+        "calories": 450,
+        "description": "팬케이크, 과일, 우유"
+      }
+    },
+    {
+      "id": "log-043",
+      "userId": "user-1",
+      "timestamp": "2025-01-19T13:00:00.000Z",
+      "date": "2025-01-19",
+      "type": "diet",
+      "value": 580,
+      "metadata": {
+        "mealType": "lunch",
+        "mealDescription": "파스타, 샐러드",
+        "calories": 580,
+        "description": "파스타, 샐러드"
+      }
+    },
+    {
+      "id": "log-044",
+      "userId": "user-1",
+      "timestamp": "2025-01-19T16:00:00.000Z",
+      "date": "2025-01-19",
+      "type": "activity",
+      "value": 60,
+      "metadata": {
+        "activityType": "수영",
+        "duration": 60,
+        "intensity": "medium",
+        "description": "1시간 수영"
+      }
+    },
+    {
+      "id": "log-045",
+      "userId": "user-1",
+      "timestamp": "2025-01-19T19:00:00.000Z",
+      "date": "2025-01-19",
+      "type": "diet",
+      "value": 550,
+      "metadata": {
+        "mealType": "dinner",
+        "mealDescription": "초밥, 된장국",
+        "calories": 550,
+        "description": "초밥, 된장국"
+      }
+    },
+    {
+      "id": "log-046",
+      "userId": "user-1",
+      "timestamp": "2025-01-19T21:00:00.000Z",
+      "date": "2025-01-19",
+      "type": "mood",
+      "value": 4,
+      "metadata": {
+        "moodScore": 4,
+        "moodNote": "주말 잘 보냄, 내일부터 다시 화이팅",
+        "description": "좋음"
+      }
+    },
+    {
+      "id": "log-047",
+      "userId": "user-1",
+      "timestamp": "2025-01-20T07:30:00.000Z",
+      "date": "2025-01-20",
+      "type": "weight",
+      "value": 61.5,
+      "metadata": {
+        "weightTime": "am",
+        "description": "61.5kg"
+      }
+    },
+    {
+      "id": "log-048",
+      "userId": "user-1",
+      "timestamp": "2025-01-20T07:30:00.000Z",
+      "date": "2025-01-20",
+      "type": "sleep",
+      "value": 7,
+      "metadata": {
+        "bedtime": "23:30",
+        "wakeTime": "06:30",
+        "sleepQuality": 4,
+        "description": "7시간 수면"
+      }
+    },
+    {
+      "id": "log-049",
+      "userId": "user-1",
+      "timestamp": "2025-01-20T08:30:00.000Z",
+      "date": "2025-01-20",
+      "type": "diet",
+      "value": 400,
+      "metadata": {
+        "mealType": "breakfast",
+        "mealDescription": "토스트, 아보카도, 스크램블 에그",
+        "calories": 400,
+        "description": "토스트, 아보카도, 스크램블 에그"
+      }
+    },
+    {
+      "id": "log-050",
+      "userId": "user-1",
+      "timestamp": "2025-01-20T12:30:00.000Z",
+      "date": "2025-01-20",
+      "type": "diet",
+      "value": 600,
+      "metadata": {
+        "mealType": "lunch",
+        "mealDescription": "불고기 정식",
+        "calories": 600,
+        "description": "불고기 정식"
+      }
+    },
+    {
+      "id": "log-051",
+      "userId": "user-1",
+      "timestamp": "2025-01-20T10:00:00.000Z",
+      "date": "2025-01-20",
+      "type": "mood",
+      "value": 4,
+      "metadata": {
+        "moodScore": 4,
+        "moodNote": "월요일이지만 컨디션 괜찮음",
+        "description": "좋음"
+      }
+    }
+  ],
+  "feedbacks": [
+    {
+      "id": "feedback-001",
+      "userId": "user-1",
+      "date": "2025-01-20",
+      "type": "morning",
+      "content": "좋은 아침이에요! 지난 일주일간 꾸준히 운동하시고 수면 패턴도 개선되고 있어요. 체중도 62.5kg에서 61.5kg으로 1kg 감량에 성공하셨네요! 오늘도 좋은 하루 보내세요.",
+      "factors": [
+        {
+          "id": "factor-001",
+          "name": "규칙적인 운동",
+          "description": "주 5회 이상 운동을 하고 계세요",
+          "evidence": "지난 7일간 총 325분 운동",
+          "impact": "positive"
+        },
+        {
+          "id": "factor-002",
+          "name": "수면 시간 개선",
+          "description": "평균 수면시간이 늘었어요",
+          "evidence": "평균 7.4시간 수면",
+          "impact": "positive"
+        },
+        {
+          "id": "factor-003",
+          "name": "체중 감량 진행중",
+          "description": "목표를 향해 나아가고 있어요",
+          "evidence": "1주일간 1kg 감량",
+          "impact": "positive"
+        }
+      ],
+      "prescriptions": [
+        "오늘 30분 이상 가벼운 운동하기",
+        "물 2L 이상 마시기",
+        "저녁 8시 이전에 식사 마무리하기"
+      ],
+      "createdAt": "2025-01-20T07:00:00.000Z"
+    },
+    {
+      "id": "feedback-002",
+      "userId": "user-1",
+      "date": "2025-01-19",
+      "type": "evening",
+      "content": "오늘 하루도 수고하셨어요! 수영 1시간으로 좋은 운동량을 채우셨고, 식사도 균형있게 하셨네요. 주말 동안 충분한 휴식을 취하신 것 같아 다행이에요.",
+      "factors": [
+        {
+          "id": "factor-004",
+          "name": "적절한 운동량",
+          "description": "오늘 목표 운동량을 달성했어요",
+          "evidence": "수영 60분 완료",
+          "impact": "positive"
+        },
+        {
+          "id": "factor-005",
+          "name": "균형 잡힌 식사",
+          "description": "하루 칼로리 섭취량이 적절해요",
+          "evidence": "총 1,580kcal 섭취",
+          "impact": "positive"
+        }
+      ],
+      "prescriptions": [
+        "오늘 밤 11시 전에 취침하세요"
+      ],
+      "createdAt": "2025-01-19T21:30:00.000Z"
+    },
+    {
+      "id": "feedback-003",
+      "userId": "user-1",
+      "date": "2025-01-18",
+      "type": "morning",
+      "content": "좋은 주말 아침이에요! 어제 푹 주무셨네요. 오늘은 등산 계획이 있으시다면 충분한 수분 섭취 잊지 마세요!",
+      "factors": [
+        {
+          "id": "factor-006",
+          "name": "충분한 수면",
+          "description": "9시간 숙면을 취하셨어요",
+          "evidence": "수면 품질 5/5",
+          "impact": "positive"
+        }
+      ],
+      "prescriptions": [
+        "등산 전 스트레칭 10분",
+        "물병 500ml 이상 챙기기"
+      ],
+      "createdAt": "2025-01-18T09:00:00.000Z"
+    },
+    {
+      "id": "feedback-004",
+      "userId": "user-1",
+      "date": "2025-01-15",
+      "type": "morning",
+      "content": "수면 부족이 감지되었어요. 어젯밤 5.5시간밖에 못 주무셨네요. 오늘은 일찍 취침하시는 것을 권장드려요.",
+      "factors": [
+        {
+          "id": "factor-007",
+          "name": "수면 부족",
+          "description": "권장 수면 시간에 미달해요",
+          "evidence": "5.5시간 수면, 품질 2/5",
+          "impact": "negative"
+        }
+      ],
+      "prescriptions": [
+        "오늘 밤 10시 30분 전에 취침하세요",
+        "취침 1시간 전 스마트폰 사용 자제"
+      ],
+      "riskLevel": "medium",
+      "riskReason": "수면 부족이 지속되면 건강에 영향을 줄 수 있어요",
+      "createdAt": "2025-01-15T08:00:00.000Z"
+    }
+  ]
+}
